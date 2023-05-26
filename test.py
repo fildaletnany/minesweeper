@@ -14,10 +14,13 @@ def mine(value, button_reference):
         locals()[button_reference].config(image=one_image)
     elif((value == "2")):
         locals()[button_reference].config(image=two_image)
+        print("2")
     elif((value == "3")):
         locals()[button_reference].config(image=three_image)
+        print("3")
     elif((value == "mine")):
         locals()[button_reference].config(image=mine_image)
+        print("mine")
 
 
 button_1 = Button(gridFrame, width = "40",height = "40",command=lambda: mine(1, "button_1")).grid(row=0,column=0)
