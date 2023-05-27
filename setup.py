@@ -33,6 +33,20 @@ def zobraz_vstup():
     result  += 'two_image = PhotoImage(file=r"" + os.getcwd() + "\_two.png")\n'
     result  += 'three_image = PhotoImage(file=r"" + os.getcwd() + "\_three.png")\n'
     result  += 'gridFrame = Frame(root).grid(row=0,column=0)\n'
+
+    result  += 'def number(value, button_reference):\n'
+    result  += 'if(value == 1):\n'
+    result  += 'print("1")\n'
+    result  += 'button_reference.config(image=one_image)\n'
+    result  += 'elif((value == 2)):\n'
+    result  += 'button_reference.config(image=two_image)\n'
+    result  += 'print("2")\n'
+    result  += 'elif((value == 3)):\n'
+    result  += 'button_reference.config(image=three_image)\n'
+    result  += 'print("3")\n'
+    result  += 'elif((value == "mine")):\n'
+    result  += 'button_reference.config(image=mine_image)\n'
+    result  += 'print("mine")\n'   
     
     #dvourozmerny array vytvorenych min
     index = 0
@@ -89,8 +103,12 @@ def zobraz_vstup():
                 #print("success, current mines_coordinates: " + mines_coordinates + " -- current index: " + index)
     """
 
+    index_mines = 0
     for x in mines_coordinates:
-        result += 'Button(gridFrame, width = "40",height = "40",command="mine").grid(row=' + str(x[0]) + ',column=' + str(x[1]) + ')\n'
+        result += 'button_' + index_mines + 'Button(gridFrame, width = "40",height = "40",command="mine")\n'
+        result  += 'button_' + index_mines + '.grid(row=' + str(x[0]) + ',column=' + str(x[1]) + ')\n'
+        result +- 'number("mine", button_1' + index_mines + ')\n'
+        index_mines += 1
     
     index_row = 0
     index_column = 0
@@ -101,7 +119,9 @@ def zobraz_vstup():
                 if(index_row == a[0] and index_column == a[1]):
                     coords_taken_bool = True
             if(coords_taken_bool == False):
-                result += 'Button(gridFrame, width = "40",height = "40",command="mine").grid(row=' + str(index_row) + ',column=' + str(index_column) + ')\n'
+                result += 'button_' + index_mines + 'Button(gridFrame, width = "40",height = "40",command="mine").grid(row=' + str(index_row) + ',column=' + str(index_column) + ')\n'
+                result += '\n'
+                result += 'number("mine", button_' + index_mines + ')\n'
             else:
                 print("coordinates already taken, skipping")
 

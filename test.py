@@ -8,22 +8,24 @@ two_image = PhotoImage(file=r"" + os.getcwd() + "\_two.png")
 three_image = PhotoImage(file=r"" + os.getcwd() + "\_three.png")
 gridFrame = Frame(root).grid(row=0,column=0)
 
-def mine(value, button_reference):
-    if(value == "1"):
+def number(value, button_reference):
+    #print(globals())
+    if(value == 1):
         print("1")
-        locals()[button_reference].config(image=one_image)
-    elif((value == "2")):
-        locals()[button_reference].config(image=two_image)
+        button_reference.config(image=one_image)
+    elif((value == 2)):
+        button_reference.config(image=two_image)
         print("2")
-    elif((value == "3")):
-        locals()[button_reference].config(image=three_image)
+    elif((value == 3)):
+        button_reference.config(image=three_image)
         print("3")
     elif((value == "mine")):
-        locals()[button_reference].config(image=mine_image)
+        button_reference.config(image=mine_image)
         print("mine")
 
-
-button_1 = Button(gridFrame, width = "40",height = "40",command=lambda: mine(1, "button_1")).grid(row=0,column=0)
+button_1 = Button(gridFrame, width = "40",height = "40")
+button_1.grid(row=0,column=0)
+number("mine", button_1)
 """
 button_2 = Button(gridFrame, width = "40",height = "40",command=partial(mine, "2", "button_2")).grid(row=0,column=1)
 button_3 = Button(gridFrame, width = "40",height = "40",command=partial(mine, "3", "button_3")).grid(row=0,column=2)
