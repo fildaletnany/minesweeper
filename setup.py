@@ -8,6 +8,20 @@ column_count = 0
 mine_count = 0
 result = NONE
 
+mines_coordinates = NONE
+row_count = 0
+column_count = 0
+mine_count = 0
+result = NONE
+
+def check_for_duplicates ():
+    for x in mines_coordinates:
+        for y in mines_coordinates:
+            if(x[0] == y[0] and x[1] == y[1]):
+                x[0] = random.randint(0,row_count)
+                x[1] = random.randint(0,column_count) 
+
+
 def zobraz_vstup():
     global e1
     global e2
