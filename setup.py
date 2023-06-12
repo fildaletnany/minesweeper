@@ -49,8 +49,25 @@ def zobraz_vstup():
     result += '     print("1")\n'
     result += '     globals()[button_reference].config(image=one_image)\n'
     result += ' elif((value == "2")):\n'
+    result += '     print("2")\n'
     result += '     globals()[button_reference].config(image=two_image)\n'
     result += ' elif((value == "3")):\n'
+    result += '     print("3")\n'
+    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += ' elif((value == "4")):\n'
+    result += '     print("4")\n'
+    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += ' elif((value == "5")):\n'
+    result += '     print("5")\n'
+    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += ' elif((value == "6")):\n'
+    result += '     print("6")\n'
+    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += ' elif((value == "7")):\n'
+    result += '     print("7")\n'
+    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += ' elif((value == "8")):\n'
+    result += '     print("8")\n'
     result += '     globals()[button_reference].config(image=three_image)\n'
 
     #dvourozmerny array vytvorenych min
@@ -129,7 +146,7 @@ def zobraz_vstup():
                 if(a[0] == index_row + 1 and a[1] == index_column + 1):
                     mines_near += 1
             if(coord_taken == False):
-                result += 'button_' + str(button_count) + '.config(command = lambda: safe(' + str(mines_near) + ', "button_' + str(button_count) + '"))\n'
+                result += 'button_' + str(button_count) + '.config(command = lambda: safe("' + str(mines_near) + '", "button_' + str(button_count) + '"))\n'
             else:
                 print("taken, skipping")
 
