@@ -42,11 +42,9 @@ def zobraz_vstup():
     result += 'three_image = PhotoImage(file=r"" + os.getcwd() + "\_three.png")\n'
     result += 'gridFrame = Frame(root).grid(row=0,column=0)\n'
     result += 'def mine(button_reference):\n'
-    result += ' print(globals())\n'
     result += ' globals()[button_reference].config(image=mine_image)\n'
     result += ' print("bum")\n'
     result += 'def safe(value, button_reference):\n'
-    result += ' print(globals())\n'
     result += ' if(value == "1"):\n'
     result += '     print("1")\n'
     result += '     globals()[button_reference].config(image=one_image)\n'
@@ -75,9 +73,9 @@ def zobraz_vstup():
 
     button_count = 0
     for x in mines_coordinates:
-        result += 'button_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=mine_image)\n'
-        result += 'button_' + str(button_count) + '.grid(row=' + str(x[0]) + ',column=' + str(x[1]) + ')\n'
-        result += 'button_' + str(button_count) + '.config(command = lambda: mine("button_' + str(button_count) + '"))\n'
+        result += 'button_mine_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=blank_image)\n'
+        result += 'button_mine_' + str(button_count) + '.grid(row=' + str(x[0]) + ',column=' + str(x[1]) + ')\n'
+        result += 'button_mine_' + str(button_count) + '.config(command = lambda: mine("button_mine_' + str(button_count) + '"))\n'
         button_count += 1
 
     index_row = 0
@@ -94,12 +92,50 @@ def zobraz_vstup():
             if(coord_taken == False):
                 result += 'button_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=blank_image)\n'
                 result += 'button_' + str(button_count) + '.grid(row=' + str(index_row) + ',column=' + str(index_column) + ')\n'
-                result += 'button_' + str(button_count) + '.config(command = lambda: safe("1", "button_' + str(button_count) + '"))\n'
             else:
                 print("taken, skipping")
 
             index_column += 1
             button_count += 1
+            coord_taken = False
+        index_column = 0
+        index_row += 1
+    
+    index_row = 0
+    index_column = 0
+    coord_taken = False
+    button_count = 0
+    mines_near = 0
+
+    while(index_row < row_count):
+        while(index_column < column_count):
+            for a in mines_coordinates:
+                if(a[0] == index_row and a[1] == index_column):
+                    coord_taken = True
+                if(a[0] == index_row - 1 and a[1] == index_column - 1):
+                    mines_near += 1
+                if(a[0] == index_row - 1 and a[1] == index_column):
+                    mines_near += 1
+                if(a[0] == index_row - 1 and a[1] == index_column + 1):
+                    mines_near += 1
+                if(a[0] == index_row and a[1] == index_column - 1):
+                    mines_near += 1
+                if(a[0] == index_row and a[1] == index_column + 1):
+                    mines_near += 1
+                if(a[0] == index_row + 1 and a[1] == index_column - 1):
+                    mines_near += 1
+                if(a[0] == index_row + 1 and a[1] == index_column):
+                    mines_near += 1
+                if(a[0] == index_row + 1 and a[1] == index_column + 1):
+                    mines_near += 1
+            if(coord_taken == False):
+                result += 'button_' + str(button_count) + '.config(command = lambda: safe(' + str(mines_near) + ', "button_' + str(button_count) + '"))\n'
+            else:
+                print("taken, skipping")
+
+            index_column += 1
+            button_count += 1
+            mines_near = 0
             coord_taken = False
         index_column = 0
         index_row += 1
