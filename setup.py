@@ -8,10 +8,11 @@ column_count = 0
 mine_count = 0
 result = NONE
 
-can_die = False
-
-def game_over():
-    print("mega ded chabr")
+mines_coordinates = NONE
+row_count = 0
+column_count = 0
+mine_count = 0
+result = NONE
 
 def check_for_duplicates ():
     for x in mines_coordinates:
@@ -36,7 +37,7 @@ def zobraz_vstup():
     result += 'root = Tk()\n'
     result += 'mine_image = PhotoImage(file=r"" + os.getcwd() + "\mine.png")\n'
     result += 'blank_image = PhotoImage(file=r"" + os.getcwd() + "\_blank.png")\n'
-    result += 'zero_image = PhotoImage(file=r"" + os.getcwd() + "\_darkGrey.png")\n'
+    result += 'default_image = PhotoImage(file=r"" + os.getcwd() + "\_empty.png")\n'
     result += 'one_image = PhotoImage(file=r"" + os.getcwd() + "\_one.png")\n'
     result += 'two_image = PhotoImage(file=r"" + os.getcwd() + "\_two.png")\n'
     result += 'three_image = PhotoImage(file=r"" + os.getcwd() + "\_three.png")\n'
@@ -52,39 +53,30 @@ def zobraz_vstup():
     result += 'def safe(value, button_reference):\n'
     result += ' if(value == "0"):\n'
     result += '     print("0")\n'
-    result += '     print(button_reference)\n'
-    result += '     globals()[button_reference].config(image=zero_image)\n'
+    result += '     globals()[button_reference].config(image=blank_image)\n'
     result += ' elif(value == "1"):\n'
     result += '     print("1")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=one_image)\n'
     result += ' elif((value == "2")):\n'
     result += '     print("2")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=two_image)\n'
     result += ' elif((value == "3")):\n'
     result += '     print("3")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=three_image)\n'
     result += ' elif((value == "4")):\n'
     result += '     print("4")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=four_image)\n'
     result += ' elif((value == "5")):\n'
     result += '     print("5")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=five_image)\n'
     result += ' elif((value == "6")):\n'
     result += '     print("6")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=six_image)\n'
     result += ' elif((value == "7")):\n'
     result += '     print("7")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=seven_image)\n'
     result += ' elif((value == "8")):\n'
     result += '     print("8")\n'
-    result += '     print(button_reference)\n'
     result += '     globals()[button_reference].config(image=eight_image)\n'
 
     #dvourozmerny array vytvorenych min
@@ -107,7 +99,7 @@ def zobraz_vstup():
 
     button_count = 0
     for x in mines_coordinates:
-        result += 'button_mine_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=blank_image)\n'
+        result += 'button_mine_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=default_image)\n'
         result += 'button_mine_' + str(button_count) + '.grid(row=' + str(x[0]) + ',column=' + str(x[1]) + ')\n'
         result += 'button_mine_' + str(button_count) + '.config(command = lambda: mine("button_mine_' + str(button_count) + '"))\n'
         button_count += 1
@@ -124,7 +116,7 @@ def zobraz_vstup():
                 if(a[0] == index_row and a[1] == index_column):
                     coord_taken = True
             if(coord_taken == False):
-                result += 'button_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=blank_image)\n'
+                result += 'button_' + str(button_count) + ' = Button(gridFrame, width = "40",height = "40", image=default_image)\n'
                 result += 'button_' + str(button_count) + '.grid(row=' + str(index_row) + ',column=' + str(index_column) + ')\n'
             else:
                 print("taken, skipping")
