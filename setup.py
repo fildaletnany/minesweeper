@@ -2,6 +2,9 @@ from tkinter import *
 import random
 import subprocess
 
+global is_dead
+is_dead = False
+
 mines_coordinates = NONE
 row_count = 0
 column_count = 0
@@ -34,7 +37,11 @@ def zobraz_vstup():
     mines_coordinates = []
     result = 'from tkinter import *\n'
     result += 'import os, sys\n'
+    result += 'import subprocess\n'
+    result += 'global root\n'
     result += 'root = Tk()\n'
+    result += 'global is_dead\n'
+    result += 'is_dead = False\n'
     result += 'mine_image = PhotoImage(file=r"" + os.getcwd() + "\mine.png")\n'
     result += 'blank_image = PhotoImage(file=r"" + os.getcwd() + "\_blank.png")\n'
     result += 'default_image = PhotoImage(file=r"" + os.getcwd() + "\_empty.png")\n'
@@ -50,34 +57,39 @@ def zobraz_vstup():
     result += 'def mine(button_reference):\n'
     result += ' globals()[button_reference].config(image=mine_image)\n'
     result += ' print("bum")\n'
+    result += ' globals()[is_dead] = True\n'
+    result += ' subprocess.run(["python", "gameOver.py"])\n'
+    
     result += 'def safe(value, button_reference):\n'
-    result += ' if(value == "0"):\n'
-    result += '     print("0")\n'
-    result += '     globals()[button_reference].config(image=blank_image)\n'
-    result += ' elif(value == "1"):\n'
-    result += '     print("1")\n'
-    result += '     globals()[button_reference].config(image=one_image)\n'
-    result += ' elif((value == "2")):\n'
-    result += '     print("2")\n'
-    result += '     globals()[button_reference].config(image=two_image)\n'
-    result += ' elif((value == "3")):\n'
-    result += '     print("3")\n'
-    result += '     globals()[button_reference].config(image=three_image)\n'
-    result += ' elif((value == "4")):\n'
-    result += '     print("4")\n'
-    result += '     globals()[button_reference].config(image=four_image)\n'
-    result += ' elif((value == "5")):\n'
-    result += '     print("5")\n'
-    result += '     globals()[button_reference].config(image=five_image)\n'
-    result += ' elif((value == "6")):\n'
-    result += '     print("6")\n'
-    result += '     globals()[button_reference].config(image=six_image)\n'
-    result += ' elif((value == "7")):\n'
-    result += '     print("7")\n'
-    result += '     globals()[button_reference].config(image=seven_image)\n'
-    result += ' elif((value == "8")):\n'
-    result += '     print("8")\n'
-    result += '     globals()[button_reference].config(image=eight_image)\n'
+    result += ' print(is_dead)\n'
+    result += ' if(is_dead == False):\n'
+    result += '  if(value == "0"):\n'
+    result += '      print("0")\n'
+    result += '      globals()[button_reference].config(image=blank_image)\n'
+    result += '  elif(value == "1"):\n'
+    result += '      print("1")\n'
+    result += '      globals()[button_reference].config(image=one_image)\n'
+    result += '  elif((value == "2")):\n'
+    result += '      print("2")\n'
+    result += '      globals()[button_reference].config(image=two_image)\n'
+    result += '  elif((value == "3")):\n'
+    result += '      print("3")\n'
+    result += '      globals()[button_reference].config(image=three_image)\n'
+    result += '  elif((value == "4")):\n'
+    result += '      print("4")\n'
+    result += '      globals()[button_reference].config(image=four_image)\n'
+    result += '  elif((value == "5")):\n'
+    result += '      print("5")\n'
+    result += '      globals()[button_reference].config(image=five_image)\n'
+    result += '  elif((value == "6")):\n'
+    result += '      print("6")\n'
+    result += '      globals()[button_reference].config(image=six_image)\n'
+    result += '  elif((value == "7")):\n'
+    result += '      print("7")\n'
+    result += '      globals()[button_reference].config(image=seven_image)\n'
+    result += '  elif((value == "8")):\n'
+    result += '      print("8")\n'
+    result += '      globals()[button_reference].config(image=eight_image)\n'
 
     #dvourozmerny array vytvorenych min
     index = 0
