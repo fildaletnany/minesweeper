@@ -8,11 +8,10 @@ column_count = 0
 mine_count = 0
 result = NONE
 
-mines_coordinates = NONE
-row_count = 0
-column_count = 0
-mine_count = 0
-result = NONE
+can_die = False
+
+def game_over():
+    print("mega ded chabr")
 
 def check_for_duplicates ():
     for x in mines_coordinates:
@@ -41,6 +40,11 @@ def zobraz_vstup():
     result += 'one_image = PhotoImage(file=r"" + os.getcwd() + "\_one.png")\n'
     result += 'two_image = PhotoImage(file=r"" + os.getcwd() + "\_two.png")\n'
     result += 'three_image = PhotoImage(file=r"" + os.getcwd() + "\_three.png")\n'
+    result += 'four_image = PhotoImage(file=r"" + os.getcwd() + "\_four.png")\n'
+    result += 'five_image = PhotoImage(file=r"" + os.getcwd() + "\_five.png")\n'
+    result += 'six_image = PhotoImage(file=r"" + os.getcwd() + "\_six.png")\n'
+    result += 'seven_image = PhotoImage(file=r"" + os.getcwd() + "\_seven.png")\n'
+    result += 'eight_image = PhotoImage(file=r"" + os.getcwd() + "\_eight.png")\n'
     result += 'gridFrame = Frame(root).grid(row=0,column=0)\n'
     result += 'def mine(button_reference):\n'
     result += ' globals()[button_reference].config(image=mine_image)\n'
@@ -65,23 +69,23 @@ def zobraz_vstup():
     result += ' elif((value == "4")):\n'
     result += '     print("4")\n'
     result += '     print(button_reference)\n'
-    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += '     globals()[button_reference].config(image=four_image)\n'
     result += ' elif((value == "5")):\n'
     result += '     print("5")\n'
     result += '     print(button_reference)\n'
-    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += '     globals()[button_reference].config(image=five_image)\n'
     result += ' elif((value == "6")):\n'
     result += '     print("6")\n'
     result += '     print(button_reference)\n'
-    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += '     globals()[button_reference].config(image=six_image)\n'
     result += ' elif((value == "7")):\n'
     result += '     print("7")\n'
     result += '     print(button_reference)\n'
-    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += '     globals()[button_reference].config(image=seven_image)\n'
     result += ' elif((value == "8")):\n'
     result += '     print("8")\n'
     result += '     print(button_reference)\n'
-    result += '     globals()[button_reference].config(image=three_image)\n'
+    result += '     globals()[button_reference].config(image=eight_image)\n'
 
     #dvourozmerny array vytvorenych min
     index = 0
